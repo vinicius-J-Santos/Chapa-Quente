@@ -2,19 +2,39 @@
 
 require_once "../bd.php";
 
-$email = $_POST["email2"];
-$senha = $_POST["senha2"];
+$email = $_POST["email"];
+$senha = $_POST["senha"];
 
-$sql = "select * from cliente where email = $email and senha = $senha";
+$sql = "SELECT * FROM cliente WHERE emailCliente = ?";
 
-$conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
 
-if($conn->affected_rows>0){
-    header("location: ../pages/menu.php");
-    exit;
-}else{
+$result = $stmt->get_result();
+
+if ($cliente = $result->fetch_assoc()) {
+
+    if (password_verify($senha, $cliente["senhaCliente"])) {
+
+        session_start();
+
+        session_regenerate_id(true);
+
+        $_SESSION["idCliente"] = $cliente["idCliente"];
+        $_SESSION["nomeCliente"] = $cliente["nomeCliente"];
+
+        header("location: ../pages/menu.php");
+        exit();
+
+    } else {
+        die("Email ou senha incorreto");
+    }
+
+} else {
     die("Email ou senha incorreto");
-    exit;
 }
+
+$stmt->close();
 
 ?>

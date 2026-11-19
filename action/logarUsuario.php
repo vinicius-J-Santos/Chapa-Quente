@@ -3,7 +3,7 @@
 require_once "../bd.php";
 
 $email = $_POST["email"];
-$senha = $_POST["senha"];
+$senha = $_POST["password"];
 
 $sql = "SELECT * FROM cliente WHERE emailCliente = ?";
 
@@ -24,7 +24,7 @@ if ($cliente = $result->fetch_assoc()) {
         $_SESSION["idCliente"] = $cliente["idCliente"];
         $_SESSION["nomeCliente"] = $cliente["nomeCliente"];
 
-        header("location: ../pages/menu.php");
+        header("location: ../page/menu");
         exit();
 
     } else {

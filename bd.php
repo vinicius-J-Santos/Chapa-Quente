@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $user = "root";
-$pass = "etec";
+$pass = "etecPoa#2026";
 $db = "chapaquente";
 $port = 3306;
 

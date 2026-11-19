@@ -2,10 +2,10 @@
 
 require_once "../bd.php";
 
-$nome = $_POST["nome"];
+$nome = $_POST["name"];
 $email = $_POST["email"];
-$telefone = $_POST["tel"];
-$senha = $_POST["senha"];
+$telefone = $_POST["phone"];
+$senha = $_POST["password"];
 
 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
@@ -21,7 +21,7 @@ $stmt->execute();
 
 $stmt->close();
 
-header("location: ../page/menu");
+header("location: ../page/menu.php");
 exit();
 
 ?>

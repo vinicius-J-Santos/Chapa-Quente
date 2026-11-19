@@ -34,25 +34,3 @@ document.querySelectorAll('.show-password').forEach((button) => {
     button.setAttribute('title', show ? 'Ocultar senha' : 'Mostrar senha');
   });
 });
-
-function showFeedback(message) {
-  feedback.textContent = message;
-  feedback.hidden = false;
-}
-
-// Esta demonstração apenas mostra uma mensagem ao enviar o formulário.
-document.querySelectorAll('form').forEach((form) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    showFeedback('bah');
-  });
-});
-
-document.querySelector('.forgot').addEventListener('click', () => {
-  showFeedback('bah');
-});
-
-document.querySelector('.browse').addEventListener('click', (event) => {
-  event.preventDefault();
-  showFeedback('bah');
-});
